@@ -287,10 +287,10 @@ orders_df = orders_df.merge(order_totals, on="order_id", how="left")
 orders_df["total_price"] = orders_df["final_price"].fillna(0)
 orders_df.drop(columns=["final_price"], inplace=True)
 
-# -- list tabel yg ma di-refresh isinya
+# -- list of tables whose contents you want to refresh
 tables_to_refresh = ["redemption", "completion"]
 
-#-- hapus data lama dari tabel
+#-- delete old data from table
 with engine.begin() as conn:
     for table in tables_to_refresh:
         conn.execute(text(f"DELETE FROM {table}"))
