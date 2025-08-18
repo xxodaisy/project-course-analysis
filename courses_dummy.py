@@ -304,5 +304,3 @@ order_details_df.to_sql("order_details", engine, if_exists="append", index=False
 redemption_df.to_sql("redemption", engine, if_exists="append", index=False)
 completion_df.to_sql("completion", engine, if_exists="append", index=False)
 print("Dummy data created successfully!")
-# completion_df = pd.DataFrame(completion)
-# transactions_df.to_csv("transactions.csv", index=False)
