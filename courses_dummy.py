@@ -1,5 +1,6 @@
 # -- IMPORT THE LIBRARIES --
 import pandas as pd
+import numpy as np
 from faker import Faker
 import random
 import uuid
@@ -36,11 +37,11 @@ def normalize_date(dt):
 
 
 # --- PARAMETER ---
-NUM_USERS = 10_000
-NUM_VOUCHERS = 50_000
-NUM_ORDERS = 30_000
-TARGET_TX = 80_000
-VOUCHER_USAGE_RATE = 0.6
+NUM_USERS = 5_000
+NUM_VOUCHERS = 10_000
+NUM_ORDERS = 5_000
+TARGET_TX = 15_000
+VOUCHER_USAGE_RATE = 0.5
 COURSES_PER_ORDER = (1, 3)
 
 # -- USERS --
@@ -83,6 +84,29 @@ def generate_email(first_name, last_name):
     domain = fake.free_email_domain()
     return f"{email_local_part}@{domain}"
 
+#age group and weights 
+age_groups = {
+    "Under 20": (17,19),
+    "20-29": (20,29),
+    "30-39": (30-39),
+    "40-49": (40,49),
+    "50+": (50,60)
+}
+
+#bobot distributions
+weights = {
+    "Under 20": 0.10,
+    "20-29": 0.35,
+    "30-39": 0.35,
+    "40-49": 0.15,
+    "50+": 0.05
+}
+
+def generate_age():
+    group = np.random.choice(list(age_groups.keys()), p=list(weights.values()))
+    low, high = age_groups[group]
+    return random.randint(low, high)
+
 users = []
 for _ in range(10000):
     education = random.choice(["Middle School", "High School", "Bachelor", "Master", "PhD"])
@@ -102,7 +126,7 @@ for _ in range(10000):
         "user_id": str(uuid.uuid4()), #pake uuid.uuid4()
         "user_name": username,
         "name": full_name,
-        "age": random.randint(18, 60),
+        "age": generate_age,
         "gender": gender,
         "email": email,
         "phone_number": fake.phone_number(),
@@ -179,7 +203,7 @@ today = datetime.now()
 vouchers = []
 for _ in range(NUM_VOUCHERS):
     user = random.choice(users)
-    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="-6m"))
+    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="today"))
     end_date = normalize_date(start_date + timedelta(days=random.randint(30, 120)))
     status = "Upcoming" if today < start_date else "Active" if start_date <= today <= end_date else "Expired"
     vouchers.append({
@@ -288,7 +312,7 @@ orders_df["total_price"] = orders_df["final_price"].fillna(0)
 orders_df.drop(columns=["final_price"], inplace=True)
 
 # -- list of tables whose contents you want to refresh
-tables_to_refresh = ["redemption", "completion"]
+tables_to_refresh = ["redemption", "completion", "order_details", "orders", "vouchers", "users"]
 
 #-- delete old data from table
 with engine.begin() as conn:
