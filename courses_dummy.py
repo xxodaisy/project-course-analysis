@@ -37,11 +37,11 @@ def normalize_date(dt):
 
 
 # --- PARAMETER ---
-NUM_USERS = 5_000
-NUM_VOUCHERS = 10_000
-NUM_ORDERS = 5_000
-TARGET_TX = 15_000
-VOUCHER_USAGE_RATE = 0.5
+NUM_USERS = 10_000
+NUM_VOUCHERS = 50_000
+NUM_ORDERS = 30_000
+TARGET_TX = 80_000
+VOUCHER_USAGE_RATE = 0.6
 COURSES_PER_ORDER = (1, 3)
 
 # -- USERS --
@@ -84,29 +84,6 @@ def generate_email(first_name, last_name):
     domain = fake.free_email_domain()
     return f"{email_local_part}@{domain}"
 
-#age group and weights 
-age_groups = {
-    "Under 20": (17,19),
-    "20-29": (20,29),
-    "30-39": (30-39),
-    "40-49": (40,49),
-    "50+": (50,60)
-}
-
-#bobot distributions
-weights = {
-    "Under 20": 0.10,
-    "20-29": 0.35,
-    "30-39": 0.35,
-    "40-49": 0.15,
-    "50+": 0.05
-}
-
-def generate_age():
-    group = np.random.choice(list(age_groups.keys()), p=list(weights.values()))
-    low, high = age_groups[group]
-    return random.randint(low, high)
-
 users = []
 for _ in range(10000):
     education = random.choice(["Middle School", "High School", "Bachelor", "Master", "PhD"])
@@ -126,7 +103,7 @@ for _ in range(10000):
         "user_id": str(uuid.uuid4()), #pake uuid.uuid4()
         "user_name": username,
         "name": full_name,
-        "age": generate_age,
+        "age": random.randint(18,60),
         "gender": gender,
         "email": email,
         "phone_number": fake.phone_number(),
