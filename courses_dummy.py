@@ -203,7 +203,7 @@ today = datetime.now()
 vouchers = []
 for _ in range(NUM_VOUCHERS):
     user = random.choice(users)
-    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="today"))
+    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="-6m"))
     end_date = normalize_date(start_date + timedelta(days=random.randint(30, 120)))
     status = "Upcoming" if today < start_date else "Active" if start_date <= today <= end_date else "Expired"
     vouchers.append({
