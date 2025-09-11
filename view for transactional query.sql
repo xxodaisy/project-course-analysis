@@ -13,7 +13,7 @@ select * from vw_full_transactions limit 100;
 
 --details of participants who have completed the course
 create or replace view vw_course_completions as 
-select u.user_id, u.name, c.course_name, comp.completion_date, c.category
+select u.user_id, u.name, c.course_name, comp.completion_date, c.category, comp.completion_status
 from completion comp
 join order_details od on comp.order_detail_id = od.order_detail_id
 join orders o on od.order_id = o.order_id
@@ -71,3 +71,4 @@ where activity_type = 'purchase'
 order by order_date asc
 
 limit 20;
+
