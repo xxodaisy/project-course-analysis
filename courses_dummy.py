@@ -84,6 +84,19 @@ def generate_email(first_name, last_name):
     domain = fake.free_email_domain()
     return f"{email_local_part}@{domain}"
 
+def generate_age():
+    r=random.random()
+    if r < 0.1: #10% under the age of 20 (17-19)
+        return random.randint(17,19)
+    if r < 0.5: #40% between 20-30
+        return random.randint(20,30)
+    if r < 0.8: #30% between 31-40
+        return random.randint(31,40)
+    if r < 0.95: #15% between 41-50
+        return random.randint(41,50)
+    else: #5% above 50
+        return random.randint(51,60)
+
 users = []
 for _ in range(10000):
     education = random.choice(["Middle School", "High School", "Bachelor", "Master", "PhD"])
@@ -103,7 +116,7 @@ for _ in range(10000):
         "user_id": str(uuid.uuid4()), #pake uuid.uuid4()
         "user_name": username,
         "name": full_name,
-        "age": random.randint(18,60),
+        "age": generate_age(),
         "gender": gender,
         "email": email,
         "phone_number": fake.phone_number(),
@@ -180,7 +193,7 @@ today = datetime.now()
 vouchers = []
 for _ in range(NUM_VOUCHERS):
     user = random.choice(users)
-    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="-6m"))
+    start_date = normalize_date(fake.date_between(start_date="-1y", end_date="+6m"))
     end_date = normalize_date(start_date + timedelta(days=random.randint(30, 120)))
     status = "Upcoming" if today < start_date else "Active" if start_date <= today <= end_date else "Expired"
     vouchers.append({
@@ -288,13 +301,20 @@ orders_df = orders_df.merge(order_totals, on="order_id", how="left")
 orders_df["total_price"] = orders_df["final_price"].fillna(0)
 orders_df.drop(columns=["final_price"], inplace=True)
 
-# -- list of tables whose contents you want to refresh
-tables_to_refresh = ["redemption", "completion", "order_details", "orders", "vouchers", "users"]
+# # -- list of tables whose contents you want to refresh
+# tables_to_refresh = ["redemption", "completion", "order_details", "orders", "vouchers", "users"]
 
-#-- delete old data from table
+# #-- delete old data from table
+# with engine.begin() as conn:
+#     for table in tables_to_refresh:
+#         conn.execute(text(f"DELETE FROM {table}"))
+
+#--list of tables whose contents you want to truncate
+tables_to_truncate = ["users", "orders", "order_details", "redemption", "completion", "vouchers"]
+
 with engine.begin() as conn:
-    for table in tables_to_refresh:
-        conn.execute(text(f"DELETE FROM {table}"))
+    for table in tables_to_truncate:
+        conn.execute(text(f"TRUNCATE TABLE {table} RESTART IDENTITY CASCADE"))
 
 # -- SAVE TO DATABASE --
 users_df.to_sql("users", engine, if_exists="append", index=False)
