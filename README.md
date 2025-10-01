@@ -73,7 +73,6 @@ The following steps will be taken to data preparation:
 - Load to DBeaver
 - Cleansing data
 
-
 ## Dashboards
 - Transaction summary → A consolidated view of all recent transactions, including key metrics such as total users, revenue, active paying users, and average revenue per user.
   
@@ -92,8 +91,8 @@ The following steps will be taken to data preparation:
 - Voucher & Discount Insights → Tracking the usage and impact of vouchers and discounts, including redemption trends, top users of vouchers, and their influence on overall sales and customer behavior.
 
 ## Full Project
-- Creating a dummy data → https://medium.com/@fleursansvoix/building-a-realistic-e-learning-dataset-from-dummy-data-to-database-510506b408e8
+- Creating a dummy data → [Building a Realistic E-Learning Dataset: From Dummy Data to Database](https://medium.com/@fleursansvoix/building-a-realistic-e-learning-dataset-from-dummy-data-to-database-510506b408e8)
   
-- Part 1 → https://medium.com/@fleursansvoix/turning-dummy-data-into-business-insights-an-e-learning-analytics-case-study-part-1-a2d2d520506c
+- Part 1 → [Turning Dummy Data into Business Insights: An E-Learning Analysis Case Study Part 1](https://medium.com/@fleursansvoix/turning-dummy-data-into-business-insights-an-e-learning-analytics-case-study-part-1-a2d2d520506c)
   
-- Part 2 → https://medium.com/@fleursansvoix/turning-dummy-data-into-business-insights-an-e-learning-analysis-case-study-part-2-7555f371997e
+- Part 2 → [Turning Dummy Data into Business Insights: An E-Learning Analysis Case Study Part 2](https://medium.com/@fleursansvoix/turning-dummy-data-into-business-insights-an-e-learning-analysis-case-study-part-2-7555f371997e)
