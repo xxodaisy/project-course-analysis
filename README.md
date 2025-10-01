@@ -74,21 +74,21 @@ The following steps will be taken to data preparation:
 - Cleansing data
 
 ## Dashboards
-- Transaction summary → A consolidated view of all recent transactions, including key metrics such as total users, revenue, active paying users, and average revenue per user.
+- **Transaction summary** → a consolidated view of all recent transactions, including key metrics such as total users, revenue, active paying users, and average revenue per user.
   
-- Voucher usage tracking → Detailed monitoring of voucher redemption, highlighting usage trends, most active users, and the impact of vouchers across different courses.
+- **Voucher usage tracking** → detailed monitoring of voucher redemption, highlighting usage trends, most active users, and the impact of vouchers across different courses.
   
-- Course participations → An overview of course enrollments and completions, showcasing participant distribution per course, category performance, and learning engagement trends.
+- **Course participations** → an overview of course enrollments and completions, showcasing participant distribution per course, category performance, and learning engagement trends.
   
-- Analytical Overviews → a high-level summary of key business metrics and trends, providing a quick snapshot of overall platform performance.
+- **Analytical Overviews** → a high-level summary of key business metrics and trends, providing a quick snapshot of overall platform performance.
   
-- User Demographics & Engagement → insights into user characteristics (e.g., age, location, type of users) and their engagement patterns, such as activity levels, retention, and interaction with courses.
+- **User Demographics & Engagement** → insights into user characteristics (e.g., age, location, type of users) and their engagement patterns, such as activity levels, retention, and interaction with courses.
   
-- Revenue & Sales → Analysis of financial performance, including total revenue, sales growth, conversion rates, and average order values across different time periods.
+- **Revenue & Sales** → analysis of financial performance, including total revenue, sales growth, conversion rates, and average order values across different time periods.
   
-- Course Performance & Sales → Evaluation of course popularity and effectiveness, covering enrollment numbers, completion rates, top-performing courses, and revenue contribution by category.
+- **Course Performance & Sales** → evaluation of course popularity and effectiveness, covering enrollment numbers, completion rates, top-performing courses, and revenue contribution by category.
   
-- Voucher & Discount Insights → Tracking the usage and impact of vouchers and discounts, including redemption trends, top users of vouchers, and their influence on overall sales and customer behavior.
+- **Voucher & Discount Insights** → tracking the usage and impact of vouchers and discounts, including redemption trends, top users of vouchers, and their influence on overall sales and customer behavior.
 
 ## Full Project
 - Creating a dummy data → [Building a Realistic E-Learning Dataset: From Dummy Data to Database](https://medium.com/@fleursansvoix/building-a-realistic-e-learning-dataset-from-dummy-data-to-database-510506b408e8)
